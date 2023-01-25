@@ -4,11 +4,11 @@ const TOKEN_FETCH_ERROR = "token/FETCH_ERROR";
 
 const tokenFetchStarted = () => ({ type: TOKEN_FETCH_STARTED });
 const tokenFetchSuccess = (payload) => ({
-  type: TOKEN_FETCH_STARTED,
+  type: TOKEN_FETCH_SUCCESS,
   payload,
   localStorage: "token",
 });
-const tokenFetchError = (payload) => ({ type: TOKEN_FETCH_STARTED, payload });
+const tokenFetchError = (payload) => ({ type: TOKEN_FETCH_ERROR, payload });
 
 function token(state = 0, action) {
   switch (action.type) {

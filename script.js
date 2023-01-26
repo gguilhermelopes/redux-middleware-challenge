@@ -1,9 +1,14 @@
 import store from "./store/configStore.js";
 import { tokenFetch } from "./store/token.js";
+import { userFetch } from "./store/user.js";
 
 async function login(user) {
-  const state = store.getState();
-  if (state.token.data === null) await store.dispatch(tokenFetch(user));
+  let state = store.getState();
+  if (state.token.data === null) {
+    await store.dispatch(tokenFetch(user));
+    state = store.getState();
+  }
+  await store.dispatch(userFetch(state.token.data));
 }
 
 login({ username: "dog", password: "dog" });

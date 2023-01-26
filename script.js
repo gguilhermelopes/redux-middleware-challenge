@@ -1,5 +1,9 @@
 import store from "./store/configStore.js";
+import { tokenFetch } from "./store/token.js";
 
-console.log(store.getState());
-store.dispatch({ type: "INCREMENTAR" });
-console.log(store.getState());
+async function login(user) {
+  const state = store.getState();
+  if (state.token.data === null) await store.dispatch(tokenFetch(user));
+}
+
+login({ username: "dog", password: "dog" });
